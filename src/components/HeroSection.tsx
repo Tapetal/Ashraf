@@ -46,12 +46,12 @@ export default function HeroSection() {
             <span className='ml-2'>is a Software Developer</span>
           </h2>
           <h2 className='flex justify-center items-center gap-2'>
-            From Abuja, 
-            <span className='inline-flex items-center gap-0'>
+            From Abuja
+            {/* <span className='inline-flex items-center gap-0'>
               <span className='text-green-400 hover:scale-110 transition-transform duration-200'>Nig</span>
               <span>e</span>
               <span className='text-green-400 hover:scale-110 transition-transform duration-200'>ria</span>
-            </span>
+            </span> */}
           </h2>
         </div>
 
