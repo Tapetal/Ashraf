@@ -4,8 +4,6 @@ This is my personal portfolio website built with **Next.js**, **TypeScript**, an
 
 ### 💡 Inspiration & Credits
 This project’s structure and design were **inspired by [Zainab Kassim](https://github.com/zainab-kassim)**.  
-I’ve customized and extended the original concept to reflect my own style, content, and technical stack.  
-Big thanks to her for sharing her amazing work with the community! 🙌
 
 ---
 
