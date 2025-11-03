@@ -1,6 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# My Developer Portfolio 🚀
 
-## Getting Started
+This is my personal portfolio website built with **Next.js**, **TypeScript**, and **Tailwind CSS** — showcasing my projects, skills, and professional journey.
+
+### 💡 Inspiration & Credits
+This project’s structure and design were **inspired by [Zainab Kassim](https://github.com/zainab-kassim)**.  
+I’ve customized and extended the original concept to reflect my own style, content, and technical stack.  
+Big thanks to her for sharing her amazing work with the community! 🙌
+
+---
+
+## 🛠️ Getting Started
 
 First, run the development server:
 
@@ -12,6 +21,7 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
