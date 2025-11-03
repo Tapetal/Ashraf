@@ -24,7 +24,7 @@ export default function HeroSection() {
             <div className='hover:text-purple-400 transition-colors duration-200 cursor-pointer'><a href="#Projects">Projects</a></div>
             <div className='hover:text-cyan-400 transition-colors duration-200 cursor-pointer'><a href="#Experience">Experience</a></div>
             <div className='hover:text-purple-400 transition-colors duration-200 cursor-pointer'><a href="#Aboutme">About</a></div>
-            <a href="https://docs.google.com/document/d/1lVQgfJbiybqjRakxfJUksAl2DdnFSI1YKD6itd8YFQM/edit?usp=sharing" target='_blank'>
+            <a href="https://docs.google.com/document/d/1gCxSo5t0mJnKGwGu5_H6E2rfgWLvpFxmYlstCJnxdDc/edit?usp=sharing" target='_blank'>
               <div className="p-[1px] bg-gradient-to-r from-purple-500 via-cyan-500 to-amber-500 rounded-3xl cursor-pointer hover:scale-105 transition-transform duration-300 animate-glow">
                 <div className="rounded-full py-2 px-4 md:py-3 md:px-6 bg-black text-white backdrop-blur-2xl hover:bg-gray-900 transition-colors duration-200">
                   Resume
@@ -44,7 +44,7 @@ export default function HeroSection() {
         
         <div className='text-center text-white animate-fade-in-up font-bold font-sans mt-6 text-xl md:text-3xl lg:text-[41px]'>
           <h2 className='flex justify-center mb-2'>
-            <span className='gradient-text'>Aminu Ashraf</span>
+            <span className='gradient-text'>Ashraf</span>
             <span className='ml-2'>is a Software Developer</span>
           </h2>
           <h2 className='flex justify-center items-center gap-2'>

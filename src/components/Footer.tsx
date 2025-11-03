@@ -46,9 +46,20 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Copyright section */}
-      <div className='text-center text-gray-600 text-xs sm:text-sm mt-8 pb-4'>
+      {/* Copyright & Credit Section */}
+      <div className='text-center text-gray-600 text-xs sm:text-sm mt-8 pb-4 space-y-1'>
         <p>© 2025 Ashraf Aminu. All rights reserved.</p>
+        <p className='text-gray-400'>
+          Design inspiration from{' '}
+          <a 
+            href="https://github.com/zainab-kassim" 
+            target='_blank' 
+            rel='noopener noreferrer' 
+            className='text-purple-500 hover:underline'
+          >
+            Zainab Kassim
+          </a>.
+        </p>
       </div>
     </div>
   )

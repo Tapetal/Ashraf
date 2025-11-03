@@ -103,7 +103,7 @@ export default function Experience() {
                                             <p className={`text-base ${colors.text} font-medium`}>{exp.company}</p>
                                             <p className='text-xs text-gray-400 mt-1'>{exp.location}</p>
                                         </div>
-                                        <div className={`px-3 py-1.5 rounded-full glass-effect border ${colors.border} ${colors.text} text-xs font-medium whitespace-nowrap w-fit`}>
+                                        <div className={`px-3 py-1.5 rounded-full glass-effect border ${colors.border} ${colors.text} text-sm sm:text-base font-semibold whitespace-nowrap w-fit bg-opacity-10`}>
                                             {exp.period}
                                         </div>
                                     </div>

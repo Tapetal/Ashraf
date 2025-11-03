@@ -4,7 +4,7 @@ import Image from 'next/image'
 export default function Project() {
     const projects = [
         {
-            title: "Inventory Management System",
+            title: "Invora",
             description:
                 "A full-featured inventory management web app built with TypeScript, React, Express, and MongoDB. Features role-based access, secure authentication, reporting tools, and a responsive dashboard for streamlined operations.",
             techStacks: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Tailwind", "JWT", "Nodemailer"],
