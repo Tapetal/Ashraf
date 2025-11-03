@@ -60,6 +60,7 @@ export default function Aboutme() {
                 { name: 'Next.js', icon: 'https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000' },
                 { name: 'Express.js', icon: 'https://img.icons8.com/?size=100&id=WNoJgbzDr3i2&format=png&color=000000' },
                 { name: 'MongoDB', icon: 'https://img.icons8.com/?size=100&id=B403GJErHZpx&format=png&color=000000' },
+                { name: 'PostgreSQL', icon: 'https://img.icons8.com/?size=100&id=38561&format=png&color=000000' }, // 🐘 Added Postgres here
                 { name: 'SQL', icon: 'https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000' },
                 { name: 'TailwindCSS', icon: 'https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000' },
                 { name: 'AWS', icon: 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000' },

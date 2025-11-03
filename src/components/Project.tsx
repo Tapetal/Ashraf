@@ -17,7 +17,7 @@ export default function Project() {
             description:
                 "A modern web application built with TypeScript, designed to streamline rotating savings and credit association operations. Features a clean interface and robust backend for managing group financial activities securely.",
             techStacks: ["TypeScript", "React", "Node.js", "Express", "MongoDB", "Tailwind"],
-            link: "https://rosca-blue.vercel.app/",
+            link: "https://rosca-client.onrender.com/",
             github: "https://github.com/Tapetal/ROSCA",
             gradient: "from-cyan-500 to-sky-500"
         },

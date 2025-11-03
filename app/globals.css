@@ -60,6 +60,18 @@ body {
   animation: float 3s ease-in-out infinite;
 }
 
+/* Gentle float with slight tilt */
+@keyframes float-tilt {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  25% { transform: translateY(-8px) rotate(-2deg); }
+  50% { transform: translateY(-16px) rotate(0.8deg); }
+  75% { transform: translateY(-8px) rotate(2deg); }
+}
+
+.animate-float-tilt {
+  animation: float-tilt 3s ease-in-out infinite;
+}
+
 /* Glow effect */
 @keyframes glow {
   0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.5); }
@@ -185,5 +197,45 @@ body {
     background: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(10px);
     border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* 3D hover tilt utilities */
+  .tilt-container {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+  .tilt-item {
+    will-change: transform, filter;
+    transition: transform 150ms ease, filter 150ms ease;
+  }
+
+  /* Dynamic highlight/shadow for faux 3D depth */
+  .memoji-highlight {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: screen;
+    background: radial-gradient(
+      200px 200px at var(--hx, 50%) var(--hy, 50%),
+      rgba(255, 255, 255, 0.18),
+      rgba(255, 255, 255, 0.06) 40%,
+      transparent 65%
+    );
+    transition: background-position 80ms linear, opacity 200ms ease;
+  }
+
+  .memoji-shadow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    mix-blend-mode: multiply;
+    background: radial-gradient(
+      260px 260px at var(--sx, 50%) var(--sy, 50%),
+      rgba(2, 6, 23, 0.35),
+      rgba(2, 6, 23, 0.15) 45%,
+      transparent 70%
+    );
+    filter: blur(10px);
+    transition: background-position 80ms linear, opacity 200ms ease;
   }
 }

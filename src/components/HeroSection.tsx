@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import githublogo from '../images/icons/github (3).png'
-import memoji from '../images/icons/Me-moji.png'
+import memoji from '../images/icons/My-Memoji.png'
 import blackOnly from '../images/icons/black_only.png'
 import flag from '../images/icons/flag.png'
 import ScrollReveal from './ui/ScrollReveal'
@@ -36,13 +36,13 @@ export default function HeroSection() {
       </div>
 
       {/* Hero Content */}
-      <div className='flex flex-col sm:px-14 px-5 justify-center items-center mb-20 pt-5 mt-24 sm:mt-36 relative z-10'>
+      <div className='flex flex-col sm:px-14 px-5 justify-center items-center mb-8 pt-12 mt-0 sm:mt-0 relative z-10'>
         <div className='relative'>
-          <Image height={170} width={170} className='animate-fade-in-up animate-float w-21 h-21' quality={100} alt='memoji' src={memoji} />
+          <Image height={80} width={900} className='animate-fade-in-up animate-float-tilt w-50 h-50 md:w-54 md:h-54' quality={100} alt='memoji' src={memoji} />
           <div className="absolute inset-0 blur-2xl bg-blue-500/30 animate-pulse-glow rounded-full -z-10"></div>
         </div>
         
-        <div className='text-center text-white animate-fade-in-up font-bold font-sans mt-6 text-xl md:text-3xl lg:text-[41px]'>
+        <div className='text-center text-white animate-fade-in-up font-bold font-sans mt-1 text-xl md:text-3xl lg:text-[41px]'>
           <h2 className='flex justify-center mb-2'>
             <span className='gradient-text'>Ashraf</span>
             <span className='ml-2'>is a Software Developer</span>
@@ -60,42 +60,47 @@ export default function HeroSection() {
         </div>
 
         <ScrollReveal animation='animate-expand-horizontally'>
-          <div className='flex justify-items-center mt-8 gap-2 sm:gap-3 relative mb-12'>
+          <div className='flex justify-items-center mt-4 gap-3 sm:gap-4 relative mb-6'>
             <a href="https://x.com/TemiDevtips" target='_blank' className='cursor-pointer group'>
-              <div className='relative'>
-                <Image height={70} width={70} className='glass-effect hover:bg-blue-500/30 hover:border-blue-400 hover:scale-110 transition-all duration-300 hover:-translate-y-3 hover:rotate-0 sm:w-14 sm:h-12 w-12 h-10 rounded-xl px-4 py-3 -rotate-6 relative border border-white/10' alt='twitter logo' src='https://img.icons8.com/?size=100&id=A4DsujzAX4rw&format=png&color=ffffff' />
-                <div className="absolute inset-0 blur-xl bg-blue-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+              <div className="p-[1px] rounded-full bg-gradient-to-br from-sky-400 via-blue-500 to-indigo-500 transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-105">
+                <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-effect-dark border border-white/10 flex items-center justify-center backdrop-blur-xl'>
+                  <Image height={20} width={20} className='w-6 h-6 sm:w-7 sm:h-7' alt='twitter logo' src='https://img.icons8.com/?size=100&id=A4DsujzAX4rw&format=png&color=ffffff' />
+                </div>
               </div>
             </a>
-            
+
             <a href="https://github.com/tapetal" target='_blank' className='cursor-pointer group'>
-              <div className='relative'>
-                <Image height={70} width={70} className='glass-effect hover:bg-cyan-500/30 hover:border-cyan-400 hover:scale-110 transition-all duration-300 hover:-translate-y-3 hover:rotate-0 sm:w-14 sm:h-12 w-12 h-10 rounded-xl px-4 py-3 -rotate-2 relative border border-white/10' alt='githublogo' src={githublogo} />
-                <div className="absolute inset-0 blur-xl bg-cyan-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+              <div className="p-[1px] rounded-full bg-gradient-to-br from-neutral-400/60 via-gray-500 to-white/60 transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-105">
+                <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-effect-dark border border-white/10 flex items-center justify-center backdrop-blur-xl'>
+                  <Image height={20} width={20} className='w-6 h-6 sm:w-7 sm:h-7' alt='githublogo' src={githublogo} />
+                </div>
               </div>
             </a>
-            
+
             <a href="https://www.linkedin.com/in/ashraf-aminu-a81310251" target='_blank' className='cursor-pointer group'>
-              <div className='relative'>
-                <Image height={70} width={70} className='glass-effect hover:bg-blue-600/30 hover:border-blue-400 hover:scale-110 transition-all duration-300 hover:-translate-y-3 sm:w-15 sm:h-12 w-12 h-10 rounded-xl px-4 py-3 border border-white/10' alt='linkedinlogo' src='https://img.icons8.com/?size=100&id=2EqeH19eMd3a&format=png&color=ffffff' />
-                <div className="absolute inset-0 blur-xl bg-blue-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+              <div className="p-[1px] rounded-full bg-gradient-to-br from-blue-400 via-blue-500 to-cyan-500 transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-105">
+                <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-effect-dark border border-white/10 flex items-center justify-center backdrop-blur-xl'>
+                  <Image height={20} width={20} className='w-6 h-6 sm:w-7 sm:h-7' alt='linkedinlogo' src='https://img.icons8.com/?size=100&id=2EqeH19eMd3a&format=png&color=ffffff' />
+                </div>
               </div>
             </a>
-            
+
             <a href="https://mail.google.com/mail/?view=cm&fs=1&to=aminuashraf55@gmail.com&su=Hello%20Ashraf&body=I%20would%20like%20to%20get%20in%20touch%20with%20you." target="_blank" rel="noopener noreferrer" className='cursor-pointer group'>
-              <div className='relative'>
-                <Image height={70} width={70} className='glass-effect hover:bg-sky-500/30 hover:border-sky-400 hover:scale-110 transition-all duration-300 hover:-translate-y-3 hover:rotate-0 sm:w-14 sm:h-12 w-12 h-10 rounded-xl px-4 py-3 rotate-3 relative border border-white/10' alt='maillogo' src='https://img.icons8.com/?size=100&id=Y2GfpkgYNp42&format=png&color=ffffff' />
-                <div className="absolute inset-0 blur-xl bg-sky-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+              <div className="p-[1px] rounded-full bg-gradient-to-br from-sky-300 via-cyan-400 to-blue-500 transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-105">
+                <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-effect-dark border border-white/10 flex items-center justify-center backdrop-blur-xl'>
+                  <Image height={20} width={20} className='w-6 h-6 sm:w-7 sm:h-7' alt='maillogo' src='https://img.icons8.com/?size=100&id=Y2GfpkgYNp42&format=png&color=ffffff' />
+                </div>
               </div>
             </a>
-            
+
             <a href="https://www.instagram.com/ashraf_amyn_/" target='_blank' className='cursor-pointer group'>
-              <div className='relative'>
-                <Image height={80} width={80} className='glass-effect hover:bg-indigo-500/30 hover:border-indigo-400 hover:scale-110 transition-all duration-300 hover:-translate-y-3 hover:rotate-0 sm:w-15 sm:h-12 w-12 h-10 rounded-xl px-4 py-3 rotate-6 relative border border-white/10' alt='instagram logo' src='https://img.icons8.com/?size=100&id=32320&format=png&color=FFFFFF' />
-                <div className="absolute inset-0 blur-xl bg-indigo-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl -z-10"></div>
+              <div className="p-[1px] rounded-full bg-gradient-to-br from-pink-400 via-fuchsia-500 to-rose-500 transition-transform duration-300 group-hover:-translate-y-2 group-hover:scale-105">
+                <div className='w-10 h-10 sm:w-12 sm:h-12 rounded-full glass-effect-dark border border-white/10 flex items-center justify-center backdrop-blur-xl'>
+                  <Image height={20} width={20} className='w-6 h-6 sm:w-7 sm:h-7' alt='instagram logo' src='https://img.icons8.com/?size=100&id=32320&format=png&color=FFFFFF' />
+                </div>
               </div>
             </a>
-          </div> 
+          </div>
         </ScrollReveal>
       </div>
     </>
