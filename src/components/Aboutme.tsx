@@ -13,7 +13,7 @@ export default function Aboutme() {
         {
             number: "01",
             title: "My Background",
-            description: "I'm Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience.",
+            description: "I'm Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience. Outside of work, I’m fascinated by science, technology, and artificial intelligence (AI). I also enjoy playing video games and football",
             color: "sky",
             gradient: "from-sky-400 to-blue-500",
             bgGradient: "from-sky-50 to-blue-50",
