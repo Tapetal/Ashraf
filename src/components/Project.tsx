@@ -94,8 +94,8 @@ export default function Project() {
                             rel="noopener noreferrer"
                             className='inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium group/link transition-colors duration-300 mt-auto'
                         >
-                            View Project
-                            <span className='group-hover/link:translate-x-1 transition-transform duration-300'>🚀</span>
+                            🌍 Live Preview →
+                            <span className='group-hover/link:translate-x-1 transition-transform duration-300'></span>
                         </a>
 
                         {/* Corner accent */}
