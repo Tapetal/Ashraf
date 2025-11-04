@@ -13,7 +13,7 @@ export default function Aboutme() {
         {
             number: "01",
             title: "My Background",
-            description: "I'm Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience. Outside of work, I’m fascinated by science, technology, and artificial intelligence (AI). I also enjoy playing video games and football",
+            description: "I'm Aminu Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience.",
             color: "sky",
             gradient: "from-sky-400 to-blue-500",
             bgGradient: "from-sky-50 to-blue-50",
@@ -60,7 +60,6 @@ export default function Aboutme() {
                 { name: 'Next.js', icon: 'https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000' },
                 { name: 'Express.js', icon: 'https://img.icons8.com/?size=100&id=WNoJgbzDr3i2&format=png&color=000000' },
                 { name: 'MongoDB', icon: 'https://img.icons8.com/?size=100&id=B403GJErHZpx&format=png&color=000000' },
-                { name: 'PostgreSQL', icon: 'https://img.icons8.com/?size=100&id=38561&format=png&color=000000' }, // 🐘 Added Postgres here
                 { name: 'SQL', icon: 'https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000' },
                 { name: 'TailwindCSS', icon: 'https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000' },
                 { name: 'AWS', icon: 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000' },
@@ -72,7 +71,7 @@ export default function Aboutme() {
 
     return (
         <>
-            <div id='Aboutme' className='relative w-full bg-gradient-to-b from-[#0a0a1a] to-white overflow-hidden'>
+            <div id='About' className='relative w-full bg-gradient-to-b from-[#0a0a1a] to-white overflow-hidden'>
                 {/* Curved arch divider */}
                 <svg
                     className="absolute top-0 left-0 w-full h-24 md:h-32 block"
@@ -93,7 +92,14 @@ export default function Aboutme() {
                 </svg>
 
                 <div className='mx-auto max-w-6xl sm:px-14 px-5 pt-32 md:pt-48 relative z-10'>
-                    <div className="font-extrabold text-center w-[280px] sm:w-[320px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center text-black text-2xl md:text-3xl">
+                    <div className="font-extrabold text-center mx-auto relative text-black text-2xl md:text-3xl pb-12 md:pb-8">
+                        <span className='bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
+                            Get to know me better
+                        </span>
+                        <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:-top-2 md:translate-x-0 -rotate-12 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-sm md:text-base font-normal rounded-full px-4 md:px-5 py-1 md:py-1.5 shadow-lg animate-glow whitespace-nowrap">
+                            About
+                        </div>
+                    </div>
                         <span className='bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
                             Get to know me better
                         </span>
