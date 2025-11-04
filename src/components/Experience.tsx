@@ -4,8 +4,8 @@ import ScrollReveal from './ui/ScrollReveal'
 export default function Experience() {
     const experiences = [
         {
-            role: "Intern",
-            company: "Nigerian Shippers Council",
+            role: "IT Support & Data Management Intern",
+            company: "Nigerian Shippers' Council",
             location: "Abuja, FCT, Nigeria",
             period: "March 2025 - Oct 2025",
             description: "Supporting data management operations and contributing to strategic decision-making through technical insights and documentation.",
@@ -18,7 +18,7 @@ export default function Experience() {
             color: "cyan"
         },
         {
-            role: "Software Development Intern",
+            role: "Frontend Developer Intern",
             company: "Comsoft",
             location: "Abuja",
             period: "October 2024 - March 2025",
@@ -52,19 +52,19 @@ export default function Experience() {
             blue: {
                 border: 'border-blue-500/30 hover:border-blue-500/60',
                 bg: 'from-blue-500 to-indigo-500',
-                text: 'text-blue-400',
+                text: 'text-blue-500',
                 glow: 'bg-blue-500/20'
             },
             sky: {
                 border: 'border-sky-500/30 hover:border-sky-500/60',
                 bg: 'from-sky-500 to-blue-500',
-                text: 'text-sky-400',
+                text: 'text-sky-500',
                 glow: 'bg-sky-500/20'
             },
             cyan: {
                 border: 'border-cyan-500/30 hover:border-cyan-500/60',
                 bg: 'from-cyan-500 to-blue-500',
-                text: 'text-cyan-400',
+                text: 'text-cyan-500',
                 glow: 'bg-cyan-500/20'
             }
         }
@@ -73,9 +73,9 @@ export default function Experience() {
 
     return (
         <div id='Experience' className='mx-auto max-w-6xl sm:px-14 px-5 py-24 relative z-10'>
-            <div className="font-extrabold text-center mx-auto relative text-2xl sm:text-3xl mb-4 pb-12 md:pb-8">
+            <div className="font-extrabold text-center w-[280px] sm:w-[340px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center justify-center text-2xl sm:text-3xl mb-4">
                 <span className="gradient-text">My Professional Journey</span>
-                <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:-top-2 md:translate-x-0 rotate-12 w-36 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-normal rounded-full px-4 py-1.5 shadow-lg animate-glow whitespace-nowrap">
+                <div className="absolute right-1 top-13 sm:right-2 sm:top-15 md:-right-20 md:top-6 rotate-12 w-36 bg-gradient-to-r from-purple-500 to-cyan-500 text-white text-sm font-normal rounded-full px-4 py-1.5 shadow-lg animate-glow">
                     Experience
                 </div>
             </div>
@@ -103,7 +103,7 @@ export default function Experience() {
                                             <p className={`text-base ${colors.text} font-medium`}>{exp.company}</p>
                                             <p className='text-xs text-gray-400 mt-1'>{exp.location}</p>
                                         </div>
-                                        <div className={`px-3 py-1.5 rounded-full glass-effect border ${colors.border} ${colors.text} text-xs font-medium whitespace-nowrap w-fit`}>
+                                        <div className={`px-3 py-1.5 rounded-full glass-effect border ${colors.border} ${colors.text} text-sm sm:text-base font-semibold whitespace-nowrap w-fit bg-opacity-10`}>
                                             {exp.period}
                                         </div>
                                     </div>
@@ -118,7 +118,7 @@ export default function Experience() {
                                         <h4 className='text-white font-semibold text-xs uppercase tracking-wide'>Key Highlights:</h4>
                                         <ul className='space-y-1.5'>
                                             {exp.achievements.map((achievement, i) => (
-                                                <li key={i} className='flex items-start gap-2 text-gray-300 text-xs'>
+                                                <li key={i} className='flex items-start gap-2 text-gray-300 text-sms'>
                                                     <span className={`inline-block w-1.5 h-1.5 ${colors.glow} rounded-full mt-1 flex-shrink-0 animate-pulse`}></span>
                                                     <span>{achievement}</span>
                                                 </li>
