@@ -8,7 +8,7 @@ export default function Project() {
             description:
                 "A full-featured inventory management web app built with TypeScript, React, Express, and MongoDB. Features role-based access, secure authentication, reporting tools, and a responsive dashboard for streamlined operations.",
             techStacks: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Tailwind", "JWT", "Nodemailer"],
-            link: "https://inventory-management-system-demo-two.vercel.app/",
+            link: "https://invora-demo.vercel.app/",
             github: "https://github.com/Tapetal/Inventory-Management-System",
             gradient: "from-blue-500 to-cyan-500"
         },
