@@ -4,6 +4,15 @@ import Image from 'next/image'
 export default function Project() {
     const projects = [
         {
+            title: "TicketProof",
+            description:
+                "A Web3-powered event ticketing platform built with Next.js and Hedera blockchain. Each ticket is a unique NFT minted via Hedera Token Service, featuring QR verification, wallet integration, gamification badges, and fraud-proof authentication to eliminate counterfeit tickets.",
+            techStacks: ["Next.js", "TypeScript", "Hedera", "Firebase", "Tailwind", "HashConnect", "Web3"],
+            link: "https://your-ticketproof-demo.vercel.app/",
+            github: "https://github.com/Tapetal/TicketProof",
+            gradient: "from-purple-500 to-pink-500"
+        },
+        {
             title: "Invora",
             description:
                 "A full-featured inventory management web app built with TypeScript, React, Express, and MongoDB. Features role-based access, secure authentication, reporting tools, and a responsive dashboard for streamlined operations.",
