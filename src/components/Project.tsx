@@ -1,5 +1,5 @@
 import React from 'react'
-import Image from 'next/image'
+// import Image from 'next/image'
 
 export default function Project() {
     const projects = [
@@ -10,7 +10,6 @@ export default function Project() {
             techStacks: ["Next.js", "TypeScript", "Hedera", "Firebase", "Tailwind", "HashConnect", "Web3"],
             link: "https://ticket-proof.vercel.app/",
             github: "https://github.com/Tapetal/TicketProof",
-            gradient: "from-purple-500 to-cyan-500"
         },
         {
             title: "Invora",
@@ -19,7 +18,6 @@ export default function Project() {
             techStacks: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Tailwind", "JWT", "Nodemailer"],
             link: "https://invora-demo.vercel.app/",
             github: "https://github.com/Tapetal/Inventory-Management-System",
-            gradient: "from-blue-500 to-cyan-500"
         },
         {
             title: "ROSCA",
@@ -28,7 +26,6 @@ export default function Project() {
             techStacks: ["TypeScript", "React", "Node.js", "Express", "MongoDB", "Tailwind"],
             link: "https://rosca-client.onrender.com/",
             github: "https://github.com/Tapetal/ROSCA",
-            gradient: "from-cyan-500 to-sky-500"
         },
         {
             title: "Miramar-SG",
@@ -37,78 +34,69 @@ export default function Project() {
             techStacks: ["Python", "HTML", "CSS", "JavaScript"],
             link: "https://miramar-sg.onrender.com",
             github: "https://github.com/Tapetal/Miramar-SG",
-            gradient: "from-sky-500 to-blue-600"
         },
     ]
 
     return (
-        <div id='Projects' className='mx-auto max-w-6xl sm:px-14 px-5 py-24 relative z-10'>
-            <div className="font-extrabold text-center w-[280px] sm:w-[340px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center justify-center text-2xl sm:text-3xl mb-4">
+        <div id='Projects' className='mx-auto max-w-7xl sm:px-14 px-5 py-24 relative z-10'>
+            <div className="font-extrabold text-center w-[280px] sm:w-[340px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center justify-center text-2xl sm:text-3xl mb-16">
                 <span className="gradient-text">Here&apos;s some things I have built</span>
                 <div className="absolute right-1 top-13 sm:right-2 sm:top-15 md:-right-22 md:top-6 -rotate-12 w-32 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm font-normal rounded-full px-4 py-1.5 shadow-lg animate-glow">
                     2024 - 2025
                 </div>
             </div>
 
-            <div className='grid md:grid-cols-2 lg:grid-cols-3 grid-cols-1 gap-8 items-stretch mt-24'>
+            <div className='grid grid-cols-1 md:grid-cols-2 gap-6 items-stretch'>
                 {projects.map((project, index) => (
                     <div 
                         key={index} 
-                        className='group relative glass-effect-dark md:px-8 px-6 pt-6 pb-8 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all duration-500 hover-scale overflow-hidden flex flex-col'
+                        className='group relative glass-effect-dark p-6 rounded-xl border border-blue-500/30 hover:border-cyan-500/60 transition-all duration-300 hover:-translate-y-1 flex flex-col'
                     >
-                        {/* Animated gradient background */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10`}></div>
-                        
-                        {/* Shimmer effect on hover */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shimmer pointer-events-none"></div>
-
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent'>
-                                {project.title}
+                        {/* Folder Icon and Links */}
+                        <div className='flex flex-row items-start justify-between mb-4'>
+                            <div className='text-cyan-400'>
+                                <svg className="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z" />
+                                </svg>
                             </div>
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className='group/icon'>
-                                <div className='relative'>
-                                    <Image 
-                                        height={70} 
-                                        width={70} 
-                                        className='w-9 h-9 group-hover/icon:scale-110 transition-transform duration-300 group-hover/icon:rotate-12' 
-                                        alt='githublogo' 
-                                        src='https://img.icons8.com/?size=100&id=62856&format=png&color=3b82f6' 
-                                    />
-                                    <div className="absolute inset-0 blur-xl bg-blue-500/50 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-300"></div>
-                                </div>
-                            </a>
+                            <div className='flex gap-3'>
+                                <a 
+                                    href={project.github} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className='text-gray-400 hover:text-cyan-400 transition-colors'
+                                >
+                                    <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                                        <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                                    </svg>
+                                </a>
+                                <a 
+                                    href={project.link} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer"
+                                    className='text-gray-400 hover:text-cyan-400 transition-colors'
+                                >
+                                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
 
-                        <div className='h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-5'></div>
+                        {/* Project Title */}
+                        <div className='text-xl font-bold text-white mb-3 group-hover:text-cyan-400 transition-colors'>
+                            {project.title}
+                        </div>
 
-                        <div className='text-gray-300 text-sm leading-relaxed mb-6 flex-grow'>
+                        {/* Description */}
+                        <div className='text-gray-400 text-sm leading-relaxed mb-6 flex-grow'>
                             {project.description}
                         </div>
 
-                        <div className='flex flex-row flex-wrap gap-2 text-xs mb-6 items-center'>
-                            {project.techStacks.map((techStack, i) => (
-                                <span 
-                                    key={i} 
-                                    className='px-2.5 py-1 rounded-full glass-effect text-blue-300 border border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/20 transition-all duration-300 hover:scale-105'
-                                >
-                                    {techStack}
-                                </span>
-                            ))}
+                        {/* Tech Stack */}
+                        <div className='text-xs text-gray-500 font-mono'>
+                            {project.techStacks.join(' • ')}
                         </div>
-
-                        <a 
-                            href={project.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className='inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium group/link transition-colors duration-300 mt-auto'
-                        >
-                            🌍 Live Preview →
-                            <span className='group-hover/link:translate-x-1 transition-transform duration-300'></span>
-                        </a>
-
-                        {/* Corner accent */}
-                        <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${project.gradient} opacity-10 blur-2xl rounded-full -z-10`}></div>
                     </div>
                 ))}
             </div>

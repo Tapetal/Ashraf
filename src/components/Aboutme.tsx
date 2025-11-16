@@ -1,117 +1,154 @@
 import React from 'react'
 import Image from 'next/image'
+import { Caveat } from 'next/font/google'
+import ScrollReveal from './ui/ScrollReveal'
 
-export default function Project() {
-    const projects = [
+const caveat = Caveat({
+    subsets: ['latin'],
+    weight: ['400', '700'],
+})
+
+export default function Aboutme() {
+    const cards = [
         {
-            title: "TicketProof",
-            description:
-                "A Web3-powered event ticketing platform built with Next.js and Hedera blockchain. Each ticket is a unique NFT minted via Hedera Token Service, featuring QR verification, wallet integration, gamification badges, and fraud-proof authentication to eliminate counterfeit tickets.",
-            techStacks: ["Next.js", "TypeScript", "Hedera", "Firebase", "Tailwind", "HashConnect", "Web3"],
-            link: "https://your-ticketproof-demo.vercel.app/",
-            github: "https://github.com/Tapetal/TicketProof",
-            gradient: "from-purple-500 to-pink-500"
+            number: "01",
+            title: "My Background",
+            description: "I'm Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience. Outside of work, I’m fascinated by science, technology, and artificial intelligence (AI). I also enjoy playing video games and football",
+            color: "sky",
+            gradient: "from-sky-400 to-blue-500",
+            bgGradient: "from-sky-50 to-blue-50",
+            borderColor: "border-sky-300/50",
+            shadowColor: "shadow-sky-500/10",
+            iconColor: "text-sky-500"
         },
         {
-            title: "Invora",
-            description:
-                "A full-featured inventory management web app built with TypeScript, React, Express, and MongoDB. Features role-based access, secure authentication, reporting tools, and a responsive dashboard for streamlined operations.",
-            techStacks: ["React", "TypeScript", "Node.js", "Express", "MongoDB", "Tailwind", "JWT", "Nodemailer"],
-            link: "https://invora-demo.vercel.app/",
-            github: "https://github.com/Tapetal/Inventory-Management-System",
-            gradient: "from-blue-500 to-cyan-500"
+            number: "02",
+            title: "My Expertise",
+            description: "I design and develop full-stack web applications using modern technologies like JavaScript, TypeScript, React.js, Node.js, MySQL, MongoDB & Firebase. I enjoy transforming ideas into high-performing digital solutions — from responsive web apps to cloud-powered services.",
+            color: "cyan",
+            gradient: "from-cyan-400 to-blue-500",
+            bgGradient: "from-cyan-50 to-blue-50",
+            borderColor: "border-cyan-300/50",
+            shadowColor: "shadow-cyan-500/10",
+            iconColor: "text-cyan-500"
         },
         {
-            title: "ROSCA",
-            description:
-                "A modern web application built with TypeScript, designed to streamline rotating savings and credit association operations. Features a clean interface and robust backend for managing group financial activities securely.",
-            techStacks: ["TypeScript", "React", "Node.js", "Express", "MongoDB", "Tailwind"],
-            link: "https://rosca-client.onrender.com/",
-            github: "https://github.com/Tapetal/ROSCA",
-            gradient: "from-cyan-500 to-sky-500"
+            number: "03",
+            title: "My Motivation",
+            description: "Technology gives me a way to solve problems that matter — faster workflows, automated systems, and tools that help people. I love seeing how software can turn complex processes into simple, scalable, and smarter solutions. Every project is a chance to learn, improve, and contribute something valuable.",
+            color: "indigo",
+            gradient: "from-indigo-400 to-blue-500",
+            bgGradient: "from-indigo-50 to-blue-50",
+            borderColor: "border-indigo-300/50",
+            shadowColor: "shadow-indigo-500/10",
+            iconColor: "text-indigo-500"
         },
         {
-            title: "Miramar-SG",
-            description:
-                "A web application built with Python and modern web technologies. Features updated CSS styles for navigation, profile sections, and responsive design for seamless user experience across devices.",
-            techStacks: ["Python", "HTML", "CSS", "JavaScript"],
-            link: "https://miramar-sg.onrender.com",
-            github: "https://github.com/Tapetal/Miramar-SG",
-            gradient: "from-sky-500 to-blue-600"
-        },
+            number: "04",
+            title: "My Toolkit",
+            description: null,
+            color: "blue",
+            gradient: "from-blue-400 to-cyan-500",
+            bgGradient: "from-blue-50 to-cyan-50",
+            borderColor: "border-blue-300/50",
+            shadowColor: "shadow-blue-500/10",
+            iconColor: "text-blue-500",
+            techStack: [
+                { name: 'React.js', icon: 'https://img.icons8.com/?size=100&id=asWSSTBrDlTW&format=png&color=000000' },
+                { name: 'TypeScript', icon: 'https://img.icons8.com/?size=100&id=wpZmKzk11AzJ&format=png&color=000000' },
+                { name: 'Node.js', icon: 'https://cdn-icons-png.flaticon.com/512/5968/5968322.png' },
+                { name: 'Next.js', icon: 'https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000' },
+                { name: 'Express.js', icon: 'https://img.icons8.com/?size=100&id=WNoJgbzDr3i2&format=png&color=000000' },
+                { name: 'MongoDB', icon: 'https://img.icons8.com/?size=100&id=B403GJErHZpx&format=png&color=000000' },
+                { name: 'PostgreSQL', icon: 'https://img.icons8.com/?size=100&id=38561&format=png&color=000000' }, // 🐘 Added Postgres here
+                { name: 'SQL', icon: 'https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000' },
+                { name: 'TailwindCSS', icon: 'https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000' },
+                { name: 'AWS', icon: 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000' },
+                { name: 'REST APIs', icon: 'https://img.icons8.com/?size=100&id=EPbEfEa7o8CB&format=png&color=000000' },
+                { name: 'Firebase', icon: 'https://img.icons8.com/?size=100&id=62452&format=png&color=000000' }
+            ]
+        }
     ]
 
     return (
-        <div id='Projects' className='mx-auto max-w-6xl sm:px-14 px-5 py-24 relative z-10'>
-            <div className="font-extrabold text-center w-[280px] sm:w-[340px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center justify-center text-2xl sm:text-3xl mb-4">
-                <span className="gradient-text">Here&apos;s some things I have built</span>
-                <div className="absolute right-1 top-13 sm:right-2 sm:top-15 md:-right-22 md:top-6 -rotate-12 w-32 bg-gradient-to-r from-amber-400 to-orange-500 text-white text-sm font-normal rounded-full px-4 py-1.5 shadow-lg animate-glow">
-                    2024 - 2025
+        <>
+            <div id='Aboutme' className='relative w-full bg-gradient-to-b from-[#0a0a1a] to-white overflow-hidden'>
+                {/* Curved arch divider */}
+                <svg
+                    className="absolute top-0 left-0 w-full h-24 md:h-32 block"
+                    viewBox="0 0 1200 120"
+                    preserveAspectRatio="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <linearGradient id="archGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stopColor="#0a0a1a" />
+                            <stop offset="100%" stopColor="#1e3a8a" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        d="M0,0 L0,40 Q600,120 1200,40 L1200,0 Z"
+                        fill="url(#archGradient)"
+                    />
+                </svg>
+
+                <div className='mx-auto max-w-6xl sm:px-14 px-5 pt-32 md:pt-48 relative z-10'>
+                    <div className="font-extrabold text-center w-[280px] sm:w-[320px] md:w-fit mx-auto relative flex flex-col md:flex-row items-center text-black text-2xl md:text-3xl">
+                        <span className='bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent'>
+                            Get to know me better
+                        </span>
+                        <div className="absolute right-6 top-13 sm:right-14 sm:top-12 md:-right-20 md:top-5 -rotate-12 w-32 bg-gradient-to-r from-cyan-400 to-blue-500 text-white text-base font-normal rounded-full px-5 py-1.5 shadow-lg animate-glow">
+                            About
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mt-20">
+                        {cards.map((card, index) => (
+                            <ScrollReveal key={index} animation='animate-fade-in' delay={`${(index + 1) * 100}`}>
+                                <div className={`group relative ${card.borderColor} border-2 ${card.shadowColor} shadow-2xl hover:shadow-3xl transition-all duration-500 rounded-2xl p-5 flex flex-col hover-scale h-full overflow-hidden bg-white`}>
+                                    {/* Gradient overlay */}
+                                    <div className={`absolute inset-0 bg-gradient-to-br ${card.bgGradient} opacity-40 group-hover:opacity-60 transition-opacity duration-500`}></div>
+                                    
+                                    {/* Decorative corner gradient */}
+                                    <div className={`absolute -top-10 -right-10 w-32 h-32 bg-gradient-to-br ${card.gradient} opacity-10 blur-3xl rounded-full group-hover:opacity-20 transition-opacity duration-500`}></div>
+                                    
+                                    {/* Content */}
+                                    <div className='relative z-10'>
+                                        {/* Handwritten number */}
+                                        <h2 className={`${caveat.className} ${card.iconColor} text-4xl font-bold mb-3`}>
+                                            {card.number}
+                                        </h2>
+                                        
+                                        {/* Title */}
+                                        <h2 className={`text-xl font-bold mb-3 ${card.iconColor}`}>
+                                            {card.title}
+                                        </h2>
+                                        
+                                        {/* Description or Tech Stack */}
+                                        {card.description ? (
+                                            <p className="text-gray-700 leading-relaxed text-sm md:text-base">
+                                                {card.description}
+                                            </p>
+                                        ) : (
+                                            <div className="grid grid-cols-2 lg:grid-cols-3 gap-2.5">
+                                                {card.techStack?.map((tech, i) => (
+                                                    <div key={i} className='flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-white border border-gray-200 shadow-sm hover:shadow-md hover:scale-105 transition-all duration-300'>
+                                                        <Image alt={`${tech.name}-icon`} width={22} height={22} className='w-5 h-5 md:w-6 md:h-6 flex-shrink-0' src={tech.icon} />
+                                                        <span className='text-xs md:text-sm font-medium text-gray-700'>{tech.name}</span>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        )}
+                                    </div>
+                                    
+                                    {/* Bottom accent line */}
+                                    <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${card.gradient}`}></div>
+                                </div>
+                            </ScrollReveal>
+                        ))}
+                    </div>
                 </div>
             </div>
-
-            <div className='grid md:grid-cols-2 lg:grid-cols-4 grid-cols-1 gap-8 items-stretch mt-24'>
-                {projects.map((project, index) => (
-                    <div 
-                        key={index} 
-                        className='group relative glass-effect-dark md:px-8 px-6 pt-6 pb-8 rounded-2xl border border-blue-500/30 hover:border-blue-500/60 transition-all duration-500 hover-scale overflow-hidden flex flex-col'
-                    >
-                        {/* Animated gradient background */}
-                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-0 group-hover:opacity-10 transition-opacity duration-500 -z-10`}></div>
-                        
-                        {/* Shimmer effect on hover */}
-                        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 shimmer pointer-events-none"></div>
-
-                        <div className='flex flex-row items-center justify-between mb-4'>
-                            <div className='text-xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent'>
-                                {project.title}
-                            </div>
-                            <a href={project.github} target="_blank" rel="noopener noreferrer" className='group/icon'>
-                                <div className='relative'>
-                                    <Image 
-                                        height={70} 
-                                        width={70} 
-                                        className='w-9 h-9 group-hover/icon:scale-110 transition-transform duration-300 group-hover/icon:rotate-12' 
-                                        alt='githublogo' 
-                                        src='https://img.icons8.com/?size=100&id=62856&format=png&color=3b82f6' 
-                                    />
-                                    <div className="absolute inset-0 blur-xl bg-blue-500/50 opacity-0 group-hover/icon:opacity-100 transition-opacity duration-300"></div>
-                                </div>
-                            </a>
-                        </div>
-
-                        <div className='h-px bg-gradient-to-r from-transparent via-blue-500 to-transparent mb-5'></div>
-
-                        <div className='text-gray-300 text-sm leading-relaxed mb-6 flex-grow'>
-                            {project.description}
-                        </div>
-
-                        <div className='flex flex-row flex-wrap gap-2 text-xs mb-6 items-center'>
-                            {project.techStacks.map((techStack, i) => (
-                                <span 
-                                    key={i} 
-                                    className='px-2.5 py-1 rounded-full glass-effect text-blue-300 border border-blue-500/30 hover:border-blue-500/60 hover:bg-blue-500/20 transition-all duration-300 hover:scale-105'
-                                >
-                                    {techStack}
-                                </span>
-                            ))}
-                        </div>
-
-                        <a 
-                            href={project.link} 
-                            target="_blank" 
-                            rel="noopener noreferrer"
-                            className='inline-flex items-center gap-2 text-cyan-400 hover:text-cyan-300 font-medium group/link transition-colors duration-300 mt-auto'
-                        >
-                            🌍 Live Preview →
-                            <span className='group-hover/link:translate-x-1 transition-transform duration-300'></span>
-                        </a>
-
-                        {/* Corner accent */}
-                        <div className={`absolute top-0 right-0 w-20 h-20 bg-gradient-to-br ${project.gradient} opacity-10 blur-2xl rounded-full -z-10`}></div>
-                    </div>
-                ))}
-            </div>
-        </div>
+        </>
     )
 }
