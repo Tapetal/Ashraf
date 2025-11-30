@@ -4,6 +4,20 @@ import ScrollReveal from './ui/ScrollReveal'
 export default function Experience() {
     const experiences = [
         {
+            role: "Bachelor of Science in Information Technology (Hons)",
+            company: "Lincoln University",
+            location: "Abuja, FCT, Nigeria",
+            period: "November 2022 - Present",
+            description: "Pursuing a comprehensive degree in Information Technology with focus on software development, systems architecture, and emerging technologies.",
+            achievements: [
+                "Studying advanced topics in software engineering, cloud computing, and database systems",
+                "Applying academic knowledge to real-world projects and internships",
+                "Building expertise in system design, algorithms, and modern development frameworks",
+                "Developing strong foundation in IT infrastructure and security principles"
+            ],
+            color: "purple"
+        },
+        {
             role: "IT Support & Data Management Intern",
             company: "Nigerian Shippers' Council",
             location: "Abuja, FCT, Nigeria",
@@ -49,6 +63,12 @@ export default function Experience() {
 
     const getColorClasses = (color: string) => {
         const colors = {
+            purple: {
+                border: 'border-purple-500/30 hover:border-purple-500/60',
+                bg: 'from-purple-500 to-pink-500',
+                text: 'text-purple-500',
+                glow: 'bg-purple-500/20'
+            },
             blue: {
                 border: 'border-blue-500/30 hover:border-blue-500/60',
                 bg: 'from-blue-500 to-indigo-500',
@@ -137,7 +157,7 @@ export default function Experience() {
             </div>
 
             {/* Timeline connector visual */}
-            <div className='absolute left-8 top-32 bottom-32 w-px bg-gradient-to-b from-blue-500 via-cyan-500 to-sky-500 opacity-20 hidden lg:block'></div>
+            <div className='absolute left-8 top-32 bottom-32 w-px bg-gradient-to-b from-purple-500 via-blue-500 via-cyan-500 to-sky-500 opacity-20 hidden lg:block'></div>
         </div>
     )
 }
