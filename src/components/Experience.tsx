@@ -7,7 +7,7 @@ export default function Experience() {
             role: "Bachelor of Science in Information Technology (Hons)",
             company: "Lincoln University",
             location: "Abuja, FCT, Nigeria",
-            period: "November 2022 - Present",
+            period: "November 2025 - Present",
             description: "Pursuing a comprehensive degree in Information Technology with focus on software development, systems architecture, and emerging technologies.",
             achievements: [
                 "Studying advanced topics in software engineering, cloud computing, and database systems",
@@ -157,7 +157,7 @@ export default function Experience() {
             </div>
 
             {/* Timeline connector visual */}
-            <div className='absolute left-8 top-32 bottom-32 w-px bg-gradient-to-b from-purple-500 via-blue-500 via-cyan-500 to-sky-500 opacity-20 hidden lg:block'></div>
+            <div className='absolute left-8 top-32 bottom-32 w-px bg-gradient-to-b from-purple-500 via-cyan-500 to-sky-500 opacity-20 hidden lg:block'></div>
         </div>
     )
 }
