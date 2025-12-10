@@ -30,7 +30,7 @@ export default function Project() {
         {
             title: "Miramar-SG",
             description:
-                "A web application built with Python and modern web technologies. Features updated CSS styles for navigation, profile sections, and responsive design for seamless user experience across devices.",
+                "A hotel booking web application built using Python and modern web technologies. It features enhanced CSS styling for intuitive navigation, user-friendly booking and profile interfaces, and a fully responsive design to ensure a smooth and seamless experience across all devices.",
             techStacks: ["Python", "HTML", "CSS", "JavaScript"],
             link: "https://miramar-sg.onrender.com",
             github: "https://github.com/Tapetal/Miramar-SG",
