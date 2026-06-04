@@ -62,7 +62,7 @@
 <!-- Floating Action Button -->
 <div class="fixed bottom-6 right-6 z-[100] flex flex-col items-end gap-3">
 
-	<!-- Command Palette Panel — pops up above the FAB -->
+	<!-- Command Palette Panel  pops up above the FAB -->
 	{#if isOpen}
 		<!-- svelte-ignore a11y_click_events_have_key_events -->
 		<!-- svelte-ignore a11y_no_static_element_interactions -->

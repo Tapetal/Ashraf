@@ -1,6 +1,7 @@
 <script lang="ts">
   import { projects } from '$lib/utils/data';
   import type { Project } from '$lib/utils/data';
+  import DotGrid from '$lib/components/DotGrid.svelte';
 
   type Category = 'all' | Project['category'];
   let activeFilter: Category = 'all';
@@ -19,10 +20,11 @@
 </script>
 
 <svelte:head>
-  <title>Projects — Ashraf Aminu</title>
+  <title>Projects  Ashraf Aminu</title>
 </svelte:head>
 
-<main class="pt-24 pb-24 px-4 sm:px-6 min-h-screen">
+<main class="relative pt-24 pb-24 px-4 sm:px-6 min-h-screen">
+  <DotGrid />
   <div class="max-w-5xl mx-auto">
 
     <!-- Header -->
@@ -30,7 +32,7 @@
       <p class="text-xs font-mono text-accent-500 uppercase tracking-widest mb-3">// portfolio</p>
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-black text-zinc-900 dark:text-zinc-100 mb-4">All Projects</h1>
       <p class="text-zinc-500 text-sm sm:text-base max-w-lg leading-relaxed">
-        A collection of projects I've built — from Web3 platforms and encrypted messaging to inventory systems and mobile apps.
+        A collection of projects I've built  from Web3 platforms and encrypted messaging to inventory systems and mobile apps.
       </p>
     </div>
 

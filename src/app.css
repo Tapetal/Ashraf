@@ -8,12 +8,12 @@
 
   :root {
     color-scheme: light;
-    --body-bg:      #f8fafc;
-    --body-text:    #111827;
-    --surface-900:  #f8fafc;
-    --surface-800:  #f3f4f6;
-    --surface-700:  #e5e7eb;
-    --surface-500:  #d1d5db;
+    --body-bg:      #faf8f3;
+    --body-text:    #1a1410;
+    --surface-900:  #faf8f3;
+    --surface-800:  #f5f1ea;
+    --surface-700:  #e8e2d7;
+    --surface-500:  #d9cfc2;
     --accent-500:   #10b981;
   }
 
@@ -93,7 +93,7 @@
     background-clip: text;
   }
 
-  /* Glass — works in both modes */
+  /* Glass  works in both modes */
   .glass {
     background: rgba(248, 250, 252, 0.85);
     backdrop-filter: blur(20px) saturate(160%);

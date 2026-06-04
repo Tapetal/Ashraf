@@ -1,22 +1,58 @@
 <script lang="ts">
   import { skillGroups } from '$lib/utils/data';
 
-  const skillIcons: Record<string, string> = {
-    'React.js': 'https://img.icons8.com/?size=100&id=asWSSTBrDlTW&format=png&color=000000',
-    'Next.js': 'https://img.icons8.com/?size=100&id=MWiBjkuHeMVq&format=png&color=000000',
-    'TailwindCSS': 'https://img.icons8.com/?size=100&id=x7XMNGh2vdqA&format=png&color=000000',
-    'TypeScript': 'https://img.icons8.com/?size=100&id=wpZmKzk11AzJ&format=png&color=000000',
-    'Node.js': 'https://cdn-icons-png.flaticon.com/512/5968/5968322.png',
-    'Express.js': 'https://img.icons8.com/?size=100&id=WNoJgbzDr3i2&format=png&color=000000',
-    'REST APIs': 'https://img.icons8.com/?size=100&id=EPbEfEa7o8CB&format=png&color=000000',
-    'MongoDB': 'https://img.icons8.com/?size=100&id=B403GJErHZpx&format=png&color=000000',
-    'PostgreSQL': 'https://img.icons8.com/?size=100&id=38561&format=png&color=000000',
-    'SQL': 'https://img.icons8.com/?size=100&id=UFXRpPFebwa2&format=png&color=000000',
-    'Supabase': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
-    'AWS': 'https://img.icons8.com/?size=100&id=33039&format=png&color=000000',
-    'Firebase': 'https://img.icons8.com/?size=100&id=62452&format=png&color=000000',
-    'Git/GitHub': 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg'
-  };
+const skillIcons: Record<string, string> = {
+  'React.js':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg',
+
+  'Next.js':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+
+  'Vue.js':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vuejs/vuejs-original.svg',
+
+  'Svelte':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/svelte/svelte-original.svg',
+
+  'TailwindCSS':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-original.svg',
+
+  'TypeScript':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg',
+
+  'Node.js':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg',
+
+  'Express.js': 
+    'https://cdn.simpleicons.org/express',
+    
+  'Google Cloud': 
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg',
+
+  'MongoDB':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg',
+
+  'PostgreSQL':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
+
+  'SQL':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg',
+
+  'Supabase':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg',
+
+  'AWS':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg',
+
+  'Firebase':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg',
+
+  'Git/GitHub':
+    'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg',
+
+  'REST APIs':
+    'https://cdn-icons-png.flaticon.com/512/2165/2165004.png'
+};
 
   // Inject extra skills into the correct groups if not already present
   const extraDatabases = ['Supabase'];
@@ -55,12 +91,12 @@
                 <!-- Icon container: smaller than before (was h-10 w-10 / img h-6 w-6) -->
                 <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg sm:rounded-xl bg-gray-200 dark:bg-surface-900">
                   <img
-                    src={skillIcons[skill] || '/logo.png'}
+                    src={skillIcons[skill] || '/logo-white.png'}
                     alt={skill}
-                    class="h-4 w-4 object-contain"
+                     class={`h-4 w-4 object-contain ${skill === 'Express.js' ? 'dark:invert' : ''}`} 
                   />
                 </div>
-                <span class="truncate text-xs font-medium text-zinc-200 leading-tight">{skill}</span>
+                <span class="truncate text-xs font-medium text-zinc-800 dark:text-zinc-200 leading-tight">{skill}</span>
               </div>
             {/each}
           </div>

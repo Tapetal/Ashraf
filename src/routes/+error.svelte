@@ -1,12 +1,14 @@
 <script lang="ts">
   import { page } from '$app/stores';
+  import DotGrid from '$lib/components/DotGrid.svelte';
 </script>
 
 <svelte:head>
-  <title>{$page.status} — Tapetal Dev</title>
+  <title>{$page.status}  Tapetal Dev</title>
 </svelte:head>
 
-<main class="min-h-screen flex items-center justify-center px-6">
+<main class="relative min-h-screen flex items-center justify-center px-6">
+  <DotGrid />
   <div class="text-center">
     <p class="text-8xl font-black font-mono text-gradient mb-4">{$page.status}</p>
     <h1 class="text-2xl font-bold text-zinc-300 mb-3">

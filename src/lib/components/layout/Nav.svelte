@@ -1,58 +1,39 @@
-<script lang="ts">
+﻿<script lang="ts">
   import { page } from '$app/stores';
   import { onMount } from 'svelte';
   import { goto } from '$app/navigation';
 
   let scrolled = false;
   let menuOpen = false;
-  let cmdOpen  = false;
+  let cmdOpen = false;
   let theme: 'light' | 'dark' = 'dark';
   let search = '';
+  $: currentPath = $page.url.pathname;
 
-  const actions = [
-    { name: 'Home',                 href: '/',                               icon: '🏠' },
-    { name: 'Projects',             href: '/projects',                       icon: '🚀' },
-    { name: 'About',                href: '/about',                          icon: '👤' },
-    { name: 'Contact',              href: '/contact',                        icon: '📧' },
-    { name: 'Switch to light mode', command: 'light' as const,               icon: '☀️' },
-    { name: 'Switch to dark mode',  command: 'dark'  as const,               icon: '🌙' },
-    { name: 'Send email',           href: 'mailto:aminuashraf55@gmail.com',   icon: '✉️' },
-    { name: 'GitHub profile',       href: 'https://github.com/Tapetal',       icon: '⭐' },
+  const links = [
+    { href: '/',         label: 'Home'     },
+    { href: '/projects', label: 'Projects' },
+    { href: '/about',    label: 'About'    },
+    { href: '/contact',  label: 'Contact'  },
   ];
 
-  $: filteredActions = actions.filter(a =>
+  const navActions = [
+    { name: 'Home',      href: '/'         },
+    { name: 'Projects',  href: '/projects' },
+    { name: 'About',     href: '/about'    },
+    { name: 'Contact',   href: '/contact'  },
+    { name: 'Light mode', command: 'light' as const },
+    { name: 'Dark mode',  command: 'dark'  as const },
+  ];
+
+  $: filteredActions = navActions.filter(a =>
     a.name.toLowerCase().includes(search.toLowerCase())
   );
 
-  // KEY FIX: derive currentPath reactively from $page store so it
-  // updates on every client-side navigation
-  $: currentPath = $page.url.pathname;
-
-  function isActive(href: string): boolean {
+  function isActive(href: string) {
     if (href === '/') return currentPath === '/';
     return currentPath.startsWith(href);
   }
-
-  onMount(() => {
-    const onScroll = () => { scrolled = window.scrollY > 40; };
-    window.addEventListener('scroll', onScroll, { passive: true });
-
-    const stored = localStorage.getItem('theme');
-    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    theme = stored === 'light' ? 'light' : stored === 'dark' ? 'dark' : prefersDark ? 'dark' : 'light';
-    applyTheme(theme);
-
-    const onKey = (e: KeyboardEvent) => {
-      if ((e.metaKey || e.ctrlKey) && e.key === 'k') { e.preventDefault(); cmdOpen = !cmdOpen; }
-      if (e.key === 'Escape') { cmdOpen = false; menuOpen = false; }
-    };
-    window.addEventListener('keydown', onKey);
-
-    return () => {
-      window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('keydown', onKey);
-    };
-  });
 
   function applyTheme(mode: 'light' | 'dark') {
     theme = mode;
@@ -61,110 +42,155 @@
     localStorage.setItem('theme', mode);
   }
 
-  function handleAction(action: { name: string; href?: string; command?: 'light' | 'dark'; icon: string }) {
-    if (action.command) {
-      applyTheme(action.command);
-    } else if (action.href) {
-      if (action.href.startsWith('mailto:') || action.href.startsWith('http')) {
-        window.open(action.href, '_blank');
-      } else {
-        goto(action.href);
-      }
-    }
-    cmdOpen = false;
-    menuOpen = false;
-    search = '';
+  function handleAction(a: { name: string; href?: string; command?: 'light' | 'dark' }) {
+    if (a.command) applyTheme(a.command);
+    else if (a.href) goto(a.href);
+    cmdOpen = false; menuOpen = false; search = '';
   }
 
-  const links = [
-    { href: '/',         label: 'Home'     },
-    { href: '/projects', label: 'Projects' },
-    { href: '/about',    label: 'About'    },
-    { href: '/contact',  label: 'Contact'  },
-  ];
+  function handleLink(href: string) { menuOpen = false; goto(href); }
+
+  onMount(() => {
+    const onScroll = () => { scrolled = window.scrollY > 24; };
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    const stored = localStorage.getItem('theme');
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    theme = stored === 'light' ? 'light' : stored === 'dark' ? 'dark' : prefersDark ? 'dark' : 'light';
+    applyTheme(theme);
+
+    const onKey = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') { e.preventDefault(); cmdOpen = !cmdOpen; }
+      if (e.key === 'Escape') { cmdOpen = false; menuOpen = false; }
+    };
+    window.addEventListener('keydown', onKey, { capture: true });
+    return () => { window.removeEventListener('scroll', onScroll); window.removeEventListener('keydown', onKey, { capture: true }); };
+  });
 </script>
 
-<!-- ════════════════════════ NAVBAR ════════════════════════ -->
-<header class="fixed top-0 left-0 right-0 z-50">
-  <nav
-    class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between transition-all duration-300"
-    class:nav-scrolled={scrolled}
-  >
-    <!-- Logo -->
-    <a href="/" class="flex items-center gap-2.5 group flex-shrink-0">
-      <img src="/logo.png" alt="Ashraf Aminu" class="w-8 h-8 transition-transform group-hover:scale-110" />
-      <span class="text-sm font-bold font-mono text-zinc-800 dark:text-zinc-100">
-        ashraf<span class="text-accent-500">-aminu</span>
-      </span>
+<!-- ── HEADER ──────────────────────────────────────────────────── -->
+<header class="fixed inset-x-0 top-0 z-50" class:scrolled>
+  <div class="mx-auto flex max-w-6xl items-center justify-between px-5 py-3 sm:px-8">
+
+    <!-- Mobile logo -->
+    <a href="/" on:click|preventDefault={() => handleLink('/')} class="flex-shrink-0 md:hidden">
+      <img
+        src={theme === 'dark' ? '/logo-white.png' : '/logo-black.png'}
+        alt="Ashraf Aminu"
+        class="h-8 w-auto"
+      />
     </a>
 
-    <!-- Desktop links -->
-    <div class="hidden md:flex items-center gap-1">
-      {#each links as { href, label }}
-        <a
-          {href}
-          class="relative px-3 py-1.5 text-sm font-medium rounded-lg transition-colors
-            {isActive(href)
-              ? 'text-accent-500'
-              : 'text-zinc-500 dark:text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200 hover:bg-zinc-100 dark:hover:bg-white/5'}"
-        >
-          {label}
-          {#if isActive(href)}
-            <span class="absolute bottom-0 left-3 right-3 h-px rounded-full bg-accent-500"></span>
-          {/if}
+    <!-- Desktop nav -->
+    <div class="hidden md:flex items-center justify-center w-full">
+      <div class="flex items-center justify-between gap-2 max-w-2xl w-full px-2 py-1.5 rounded-full border bg-white/70 dark:bg-white/5 dark:border-white/10 backdrop-blur-md">
+
+        <!-- Logo -->
+        <a href="/" on:click|preventDefault={() => handleLink('/')} class="flex items-center pl-2 pr-4">
+          <img
+            src={theme === 'dark' ? '/logo-white.png' : '/logo-black.png'}
+            alt="logo"
+            class="h-10 w-auto"
+          />
         </a>
-      {/each}
+
+        <!-- Links -->
+        <nav class="flex items-center gap-4">
+          {#each links as { href, label }}
+            <a
+              href={href}
+              on:click|preventDefault={() => handleLink(href)}
+              class="nav-pill"
+              class:nav-pill-active={isActive(href)}
+            >
+              {label}
+            </a>
+          {/each}
+        </nav>
+
+        <!-- Theme toggle (FIXED) -->
+        <div class="flex items-center gap-2 pr-2">
+          <button
+            type="button"
+            on:click={() => applyTheme(theme === 'dark' ? 'light' : 'dark')}
+            aria-label="Toggle theme"
+            class="icon-btn text-zinc-700 dark:text-zinc-200"
+          >
+            {#if theme === 'dark'}
+              <!-- Sun icon -->
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19" />
+              </svg>
+            {:else}
+              <!-- Moon icon -->
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
+              </svg>
+            {/if}
+          </button>
+        </div>
+      </div>
     </div>
 
-    <!-- Right controls -->
-    <div class="flex items-center gap-2">
-      <!-- Theme toggle -->
+    <!-- Mobile actions -->
+    <div class="flex items-center gap-2 md:hidden">
+
+      <!-- Theme toggle (FIXED) -->
       <button
+        type="button"
         on:click={() => applyTheme(theme === 'dark' ? 'light' : 'dark')}
         aria-label="Toggle theme"
-        class="flex items-center justify-center w-8 h-8 rounded-lg transition-all
-          border border-zinc-200 dark:border-zinc-800
-          bg-white dark:bg-surface-800
-          text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-100
-          hover:border-zinc-300 dark:hover:border-zinc-600"
+        class="icon-btn text-zinc-700 dark:text-zinc-200"
       >
         {#if theme === 'dark'}
-          <!-- Sun icon -->
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <circle cx="12" cy="12" r="5"/>
-            <line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-            <line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          <!-- Sun -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="4" />
+            <path d="M12 2v2M12 20v2M4 12H2M22 12h-2" />
           </svg>
         {:else}
-          <!-- Moon icon -->
-          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/>
+          <!-- Moon -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z" />
           </svg>
         {/if}
       </button>
 
-      <!-- Available badge (desktop) -->
-      <div class="hidden md:flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg bg-accent-500/10 border border-accent-500/20 text-[11px] font-semibold text-accent-500">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse"></span>
-        Available
-      </div>
-
       <!-- Hamburger -->
       <button
-        on:click={() => menuOpen = !menuOpen}
-        class="md:hidden p-2 rounded-lg transition-colors
-          text-zinc-500 hover:text-zinc-900 dark:hover:text-zinc-200
-          hover:bg-zinc-100 dark:hover:bg-white/5"
-        aria-label="Toggle menu"
+        type="button"
+        class="icon-btn text-zinc-700 dark:text-zinc-200"
+        on:click={() => (menuOpen = !menuOpen)}
+        aria-label="Menu"
+        aria-expanded={menuOpen}
       >
         {#if menuOpen}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-            <path d="M18 6 6 18M6 6l12 12"/>
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M6 18L18 6M6 6l12 12"/>
           </svg>
         {:else}
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <line x1="3" y1="6" x2="21" y2="6"/>
             <line x1="3" y1="12" x2="21" y2="12"/>
             <line x1="3" y1="18" x2="21" y2="18"/>
@@ -172,157 +198,228 @@
         {/if}
       </button>
     </div>
-  </nav>
+  </div>
 
-  <!-- Mobile dropdown -->
+  <!-- Mobile menu -->
   {#if menuOpen}
-    <div class="md:hidden px-4 py-3 space-y-1 border-b
-      bg-white/95 dark:bg-[#080a0e]/95
-      border-zinc-200 dark:border-white/5
-      backdrop-blur-xl">
+    <div class="mobile-menu">
       {#each links as { href, label }}
-        <a
-          {href}
-          on:click={() => menuOpen = false}
-          class="flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium transition-colors
-            {isActive(href)
-              ? 'text-accent-500 bg-accent-500/8'
-              : 'text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-zinc-200'}"
+        <button
+          type="button"
+          on:click={() => handleLink(href)}
+          class="mobile-link"
+          class:mobile-active={isActive(href)}
         >
           {label}
-          {#if isActive(href)}
-            <span class="w-1.5 h-1.5 rounded-full bg-accent-500"></span>
-          {/if}
-        </a>
+        </button>
       {/each}
-
-      <div class="h-px bg-zinc-100 dark:bg-white/5 my-1"></div>
-      <div class="flex items-center gap-2 px-3 py-2 text-xs font-semibold text-accent-500">
-        <span class="w-1.5 h-1.5 rounded-full bg-accent-500 animate-pulse"></span>
-        Available for work
-      </div>
     </div>
   {/if}
 </header>
 
-<!-- ════════════════ FLOATING COMMAND PALETTE ════════════════ -->
-<div class="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[100] flex flex-col items-end gap-3">
+<!-- ── COMMAND PALETTE FAB ─────────────────────────────────────── -->
+<div class="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[100]">
 
   {#if cmdOpen}
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div
-      class="fixed inset-0 z-[99] bg-black/30 dark:bg-black/60 backdrop-blur-sm"
-      on:click={() => { cmdOpen = false; search = ''; }}
-    ></div>
+    <!-- Backdrop -->
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <!-- svelte-ignore a11y-no-static-element-interactions -->
+    <div class="fixed inset-0 z-[99] bg-black/50 backdrop-blur-sm"
+      on:click={() => { cmdOpen = false; search = ''; }}></div>
 
-    <!-- svelte-ignore a11y_click_events_have_key_events -->
-    <!-- svelte-ignore a11y_no_static_element_interactions -->
-    <div
-      class="relative z-[101] w-[min(92vw,380px)] overflow-hidden rounded-2xl shadow-2xl
-        border border-gray-200 dark:border-white/10
-        bg-white dark:bg-[#0d1117]"
-      on:click|stopPropagation
+    <!-- Palette  fixed centered on ALL screen sizes -->
+    <div class="fixed z-[101]
+      left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2
+      w-[min(92vw,420px)]
+      rounded-2xl overflow-hidden shadow-2xl
+      border border-white/10 dark:border-white/10
+      bg-white dark:bg-[#0d1117]"
+      role="dialog"
+      on:click|stopPropagation={() => {}}
+      on:keydown|stopPropagation={() => {}}
     >
-      <div class="flex items-center gap-3 px-4 py-3 border-b border-gray-100 dark:border-white/5">
-        <span class="text-sm flex-shrink-0 text-zinc-400 dark:text-zinc-600">⌘</span>
-        <input
-          bind:value={search}
-          type="text"
-          placeholder="Search pages or actions…"
-          autofocus
+      <!-- Search row -->
+      <div class="flex items-center gap-3 px-4 py-3 border-b border-black/8 dark:border-white/6">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-zinc-400 flex-shrink-0">
+          <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+        </svg>
+        <input bind:value={search} type="text" placeholder="Search pages…"
           class="flex-1 bg-transparent text-sm outline-none
-            text-zinc-800 dark:text-zinc-100
-            placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
-        />
-        <kbd class="shrink-0 rounded px-1.5 py-0.5 text-[10px]
-          bg-gray-100 dark:bg-white/5
-          text-zinc-400 dark:text-white/40
-          border border-gray-200 dark:border-white/10">ESC</kbd>
+            text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-600"
+          autofocus />
+        <kbd class="text-[10px] px-1.5 py-0.5 rounded border
+          text-zinc-500 dark:text-zinc-600
+          border-zinc-200 dark:border-zinc-700
+          bg-zinc-100 dark:bg-zinc-800">ESC</kbd>
       </div>
 
+      <!-- Results -->
       <div class="max-h-[50vh] overflow-y-auto p-1.5">
-        {#each filteredActions as action}
-          <button
-            type="button"
-            class="flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left text-sm transition-colors
-              text-zinc-600 dark:text-zinc-400
-              hover:bg-gray-100 dark:hover:bg-white/5
-              hover:text-zinc-900 dark:hover:text-zinc-100"
-            on:click={() => handleAction(action)}
-          >
-            <span class="text-base">{action.icon}</span>
+        {#each filteredActions as action (action.name)}
+          <button type="button" on:click={() => handleAction(action)} class="palette-result">
             <span class="flex-1 font-medium">{action.name}</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="palette-icon">
+              <path d="M5 12h14M12 5l7 7-7 7"/>
+            </svg>
           </button>
-        {:else}
-          <div class="py-8 text-center text-xs text-zinc-400 dark:text-zinc-600">
-            No results for "{search}"
-          </div>
         {/each}
+        {#if filteredActions.length === 0}
+          <div class="py-8 text-center text-xs text-zinc-400 dark:text-zinc-600">No results</div>
+        {/if}
       </div>
 
-      <div class="flex items-center justify-between border-t px-4 py-2 text-[10px] uppercase tracking-tighter
-        border-gray-100 dark:border-white/5
-        bg-gray-50 dark:bg-white/[0.02]
-        text-zinc-400 dark:text-white/25">
+      <!-- Footer -->
+      <div class="flex items-center justify-between border-t border-black/6 dark:border-white/5 px-4 py-2
+        bg-zinc-50 dark:bg-white/[0.02]
+        text-[10px] text-zinc-400 dark:text-zinc-600 uppercase tracking-wider">
         <div class="flex gap-3">
-          <span><kbd class="rounded px-1 bg-gray-100 dark:bg-white/5">↑↓</kbd> Navigate</span>
-          <span><kbd class="rounded px-1 bg-gray-100 dark:bg-white/5">↵</kbd> Select</span>
+          <span><kbd class="bg-zinc-100 dark:bg-white/5 px-1 rounded">↑↓</kbd> Navigate</span>
+          <span><kbd class="bg-zinc-100 dark:bg-white/5 px-1 rounded">↵</kbd> Select</span>
         </div>
-        <span>Ashraf_OS v1.0</span>
+        <span>⌘K</span>
       </div>
     </div>
   {/if}
 
   <!-- FAB -->
-  <button
-    type="button"
-    on:click={() => { cmdOpen = !cmdOpen; if (!cmdOpen) search = ''; }}
-    aria-label="Open command palette"
-    class="group relative flex h-12 w-12 sm:h-14 sm:w-14 items-center justify-center rounded-full transition-all duration-200
-      border border-gray-200 dark:border-white/10
-      bg-white dark:bg-[#0d1117]
-      shadow-lg shadow-black/8 dark:shadow-black/40
-      hover:scale-105 hover:border-accent-500/40 hover:shadow-xl hover:shadow-accent-500/10
-      active:scale-95"
-  >
-    <span class="absolute inset-0 rounded-full bg-accent-500/0 group-hover:bg-accent-500/8 transition-all duration-300"></span>
-
+  <button type="button" on:click={() => { cmdOpen = !cmdOpen; }}
+    aria-label="Command palette"
+    class="group relative flex h-12 w-12 items-center justify-center rounded-full shadow-xl transition-all duration-200
+      border border-black/10 bg-white dark:border-white/10 dark:bg-[#0d1117]
+      hover:scale-105 hover:border-accent-500/40 hover:shadow-accent-500/10 active:scale-95">
+    <span class="absolute inset-0 rounded-full bg-accent-500/0 transition-all duration-300 group-hover:bg-accent-500/8"></span>
     {#if cmdOpen}
-      <svg class="h-4 w-4 sm:h-5 sm:w-5 text-zinc-500 dark:text-white/60" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-zinc-600 dark:text-white/70">
+        <path d="M18 6l-12 12M6 6l12 12"/>
       </svg>
     {:else}
-      <svg class="h-4 w-4 sm:h-5 sm:w-5 text-accent-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3"/>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" class="text-accent-500">
+        <path d="M8 9l3 3-3 3m5 0h3"/>
         <rect x="3" y="3" width="18" height="18" rx="3"/>
       </svg>
     {/if}
-
-    <span class="pointer-events-none absolute right-16 whitespace-nowrap rounded-lg px-2.5 py-1 text-[11px] font-medium
-      opacity-0 group-hover:opacity-100 transition-opacity duration-150 shadow-lg
-      border border-gray-200 dark:border-white/10
+    <!-- Tooltip (desktop only) -->
+    <span class="pointer-events-none absolute right-14 whitespace-nowrap rounded-lg px-2.5 py-1
+      text-[11px] font-medium opacity-0 group-hover:opacity-100 transition-opacity shadow-lg
+      border border-black/8 dark:border-white/10
       bg-white dark:bg-[#0a0a0a]
-      text-zinc-600 dark:text-white/60">
-      Command Palette
-      <kbd class="ml-1 rounded px-1 py-0.5 text-[10px]
-        bg-gray-100 dark:bg-white/5
-        text-zinc-400 dark:text-white/30
-        border border-zinc-200 dark:border-white/10">⌘K</kbd>
+      text-zinc-700 dark:text-white/60
+      hidden sm:block">
+      Command palette <kbd class="ml-1 text-[10px] opacity-50">⌘K</kbd>
     </span>
   </button>
 </div>
 
 <style>
-  .nav-scrolled {
-    background: rgba(248, 250, 252, 0.92);
+  /* ── Header ────────────────────────────────────────────────── */
+  header { background: transparent; }
+
+  header.scrolled {
+    background: rgba(248, 250, 252, 0.88);
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border-bottom: 1px solid rgba(0, 0, 0, 0.07);
+    border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.06);
+  }
+  :global(.dark) header.scrolled {
+    background: rgba(7, 11, 15, 0.88);
+    border-bottom-color: rgba(255, 255, 255, 0.07);
+    box-shadow: 0 1px 20px rgba(0, 0, 0, 0.3);
   }
 
-  :global(.dark) .nav-scrolled {
-    background: rgba(8, 10, 14, 0.92);
-    border-bottom-color: rgba(255, 255, 255, 0.06);
+  /* ── Nav pills (sveltefolio style) ─────────────────────────── */
+  .nav-pill {
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 5px 14px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: #52525b;
+    text-decoration: none;
+    border-radius: 999px;
+    transition: color 0.15s, background 0.15s;
+  }
+  .nav-pill:hover {
+    color: #18181b;
+    background: rgba(0, 0, 0, 0.05);
+  }
+  .nav-pill-active {
+    color: #18181b;
+    font-weight: 600;
+  }
+  .nav-pill-active::after {
+    content: '';
+    display: block;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: #000; /* black in light mode */
+    margin-top: -2px;
+  }
+  :global(.dark) .nav-pill { color: rgba(255,255,255,0.45); }
+  :global(.dark) .nav-pill:hover { color: #fff; background: rgba(255,255,255,0.06); }
+  :global(.dark) .nav-pill-active { color: #fff; }
+  :global(.dark) .nav-pill-active::after { background: #fff; }
+
+  /* ── Icon button ───────────────────────────────────────────── */
+  .icon-btn {
+    display: flex; align-items: center; justify-content: center;
+    width: 34px; height: 34px; border-radius: 9px; cursor: pointer;
+    border: 0.5px solid rgba(0,0,0,0.1);
+    background: rgba(0,0,0,0.04);
+    color: #52525b;
+    transition: background 0.15s, color 0.15s;
+  }
+  .icon-btn:hover { background: rgba(0,0,0,0.08); color: #18181b; }
+  :global(.dark) .icon-btn {
+    border-color: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.7);
+  }
+  :global(.dark) .icon-btn:hover { background: rgba(255,255,255,0.1); color: #fff; }
+
+  /* Command palette result styles */
+  .palette-result {
+    display:flex; align-items:center; gap:0.75rem; width:100%;
+    padding:10px 12px; border-radius:10px; text-align:left; font-size:14px;
+    background:transparent; color:#52525b; border:none; cursor:pointer;
+    transition:background 0.12s, color 0.12s;
+  }
+  .palette-result:hover { background: rgba(16,185,129,0.08); color: #065f46; }
+  :global(.dark) .palette-result { color: rgba(255,255,255,0.8); }
+  :global(.dark) .palette-result:hover { background: rgba(16,185,129,0.12); color: #fff; }
+  .palette-icon { color: rgba(148,163,184,0.6); }
+  :global(.dark) .palette-icon { color: rgba(255,255,255,0.28); }
+
+  /* ── Mobile menu ───────────────────────────────────────────── */
+  .mobile-menu {
+    padding: 8px 16px 14px;
+    background: rgba(248,250,252,0.97);
+    backdrop-filter: blur(20px);
+    border-top: 0.5px solid rgba(0,0,0,0.07);
+    display: flex; flex-direction: column; gap: 3px;
+  }
+  :global(.dark) .mobile-menu {
+    background: rgba(7,11,15,0.97);
+    border-top-color: rgba(255,255,255,0.07);
+  }
+  .mobile-link {
+    width: 100%; text-align: left;
+    padding: 10px 14px; border-radius: 10px;
+    font-size: 13px; font-weight: 500;
+    color: #52525b; background: transparent; border: none; cursor: pointer;
+    transition: background 0.12s, color 0.12s;
+  }
+  .mobile-link:hover, .mobile-link.mobile-active {
+    background: rgba(0,0,0,0.05); color: #18181b;
+  }
+  :global(.dark) .mobile-link { color: rgba(255,255,255,0.5); }
+  :global(.dark) .mobile-link:hover,
+  :global(.dark) .mobile-link.mobile-active {
+    background: rgba(255,255,255,0.06); color: #fff;
   }
 </style>

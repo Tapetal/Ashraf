@@ -1,4 +1,4 @@
-# Portfolio — tapetal.dev
+# Portfolio  tapetal.dev
 
 A highly interactive developer portfolio built with SvelteKit, TypeScript, and Tailwind CSS.
 
@@ -23,8 +23,8 @@ npm run preview  # Preview production
 ```
 src/
 ├── routes/
-│   ├── +layout.svelte      Global layout — Nav + Footer + page transitions
-│   ├── +page.svelte        Home — Hero, FeaturedProjects, Skills, Timeline, Contact
+│   ├── +layout.svelte      Global layout  Nav + Footer + page transitions
+│   ├── +page.svelte        Home  Hero, FeaturedProjects, Skills, Timeline, Contact
 │   ├── +error.svelte       Error page
 │   ├── projects/           All projects with category filter
 │   ├── about/              Bio, stats, available banner, Skills, Timeline
@@ -40,7 +40,7 @@ src/
     │       ├── Timeline.svelte      Alternating vertical timeline
     │       └── ContactSection.svelte Form with validation + contact links
     └── utils/
-        └── data.ts          All portfolio content — projects, skills, timeline, me
+        └── data.ts          All portfolio content  projects, skills, timeline, me
 ```
 
 ---
@@ -60,23 +60,23 @@ src/
 
 ## ⚡ Performance Optimisation
 
-- **Font preconnect** — Google Fonts loaded with `display=swap`
-- **No animation library** — all transitions are pure CSS keyframes via Tailwind
-- **Component code splitting** — SvelteKit auto-splits per route
-- **`afterNavigate` scroll reset** — prevents stale scroll position on navigation
-- **`passive` scroll listener** in Nav — prevents blocking the main thread
-- **Lazy section rendering** — sections below the fold render on scroll into view
-- **SVG icons inline** — no icon library bundle, zero requests
+- **Font preconnect**  Google Fonts loaded with `display=swap`
+- **No animation library**  all transitions are pure CSS keyframes via Tailwind
+- **Component code splitting**  SvelteKit auto-splits per route
+- **`afterNavigate` scroll reset**  prevents stale scroll position on navigation
+- **`passive` scroll listener** in Nav  prevents blocking the main thread
+- **Lazy section rendering**  sections below the fold render on scroll into view
+- **SVG icons inline**  no icon library bundle, zero requests
 
 ---
 
 ## ♿ Accessibility
 
 - Semantic HTML: `<header>`, `<nav>`, `<main>`, `<footer>`, `<article>`, `<section>`
-- All interactive elements are `<a>` or `<button>` — keyboard accessible
+- All interactive elements are `<a>` or `<button>`  keyboard accessible
 - `aria-label` on icon-only buttons
 - Visible `:focus-visible` ring on all focusable elements (2px accent-500)
-- Skip navigation via keyboard — Tab to first link
+- Skip navigation via keyboard  Tab to first link
 - Color contrast: all text meets WCAG AA (4.5:1 on dark bg)
 - Command palette: `⌘K` keyboard shortcut, `Escape` to close, arrow navigation
 
@@ -84,13 +84,13 @@ src/
 
 ## 🎨 Creative Feature
 
-**⌘K Command Palette** — press `Ctrl/Cmd + K` anywhere to open a keyboard-driven navigation overlay. Navigate to any page or trigger actions without touching the mouse. Closes on Escape.
+**⌘K Command Palette**  press `Ctrl/Cmd + K` anywhere to open a keyboard-driven navigation overlay. Navigate to any page or trigger actions without touching the mouse. Closes on Escape.
 
 ---
 
 ## ⚠️ Trade-offs
 
-- **No GSAP/Motion One** — keeping the bundle lean; CSS animations cover all use cases here
-- **No 3D/WebGL** — decided against Three.js to prioritise load speed and accessibility
-- **Static contact form** — no email backend in demo; easy to wire up Resend/Formspree
-- **Data in `data.ts`** — no CMS; for a portfolio this size, a flat file is faster and simpler
+- **No GSAP/Motion One**  keeping the bundle lean; CSS animations cover all use cases here
+- **No 3D/WebGL**  decided against Three.js to prioritise load speed and accessibility
+- **Static contact form**  no email backend in demo; easy to wire up Resend/Formspree
+- **Data in `data.ts`**  no CMS; for a portfolio this size, a flat file is faster and simpler

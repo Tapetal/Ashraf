@@ -2,8 +2,9 @@ export const me = {
   name:       'Ashraf Aminu',
   title:      'Software Developer',
   tagline:    'Crafting scalable, high-impact applications with clean UIs and efficient performance.',
-  bio:        "I'm Ashraf, a results-driven software & web developer based in Abuja. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience. Outside of work, I'm fascinated by science, technology, and artificial intelligence (AI). I also enjoy playing video games and football.",
-  location:   'Abuja, FCT, Nigeria',
+  bio:        "A results-driven software & web developer. I'm passionate about building secure, scalable applications that solve real business problems and improve user experience. Outside of work, I'm fascinated by science, technology, and artificial intelligence (AI). I also enjoy playing video games and football.",
+  heroBio:    "I build digital experiences that solve real problems. From responsive web apps to blockchain-powered solutions, I transform ideas into scalable, high-performing products.",
+  location:   'Nigeria',
   email:      'aminuashraf55@gmail.com',
   github:     'https://github.com/Tapetal',
   twitter:    'https://x.com/ashraf_amyn_',
@@ -17,7 +18,7 @@ export const me = {
 export const skillGroups = [
   {
     title: 'Frontend',
-    skills: ['React.js', 'Next.js', 'TailwindCSS'],
+    skills: ['React.js', 'Next.js', 'Vue.js', 'Svelte', 'TailwindCSS'],
   },
   {
     title: 'Backend',
@@ -29,7 +30,7 @@ export const skillGroups = [
   },
   {
     title: 'Cloud & Tools',
-    skills: ['AWS', 'Firebase', 'Git/GitHub'],
+    skills: ['AWS', 'Google Cloud', 'Firebase', 'Git/GitHub'],
   },
 ];
 
